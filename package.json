@@ -1,0 +1,7 @@
+{
+  "name"          : "stackedit-htmltopdf",
+  "description"   : "HTMLtoPDF for StackEdit.",
+  "author"        : "Benoit Schweblin",
+  "dependencies"  : ["express"],
+  "engines"       : { "node": "0.10.x" }
+}
