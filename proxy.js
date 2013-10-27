@@ -19,22 +19,26 @@ function loadConfig() {
 var config = loadConfig();
 var app = express();
 
-// Convenience for allowing CORS on routes - GET only
+// Convenience for allowing CORS on routes
 app.all('*', function (req, res, next) {
     res.header('Access-Control-Allow-Origin', '*'); 
-    res.header('Access-Control-Allow-Methods', 'GET, OPTIONS'); 
-    res.header('Access-Control-Allow-Headers', 'Content-Type');
+    res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS'); 
+    res.header('Access-Control-Allow-Headers', 'content-type, page-size');
     next();
 });
 
-var options = {
-    hostname: config.php_server_hostname,
-    port: config.php_server_port,
-    path: config.php_server_path,
-    method: 'POST'
-};
-
 app.post('*', function(req, res) {
+    var headers = {};
+    var pageSize = req.header('page-size');
+    pageSize && (headers['page-size'] = pageSize);
+
+    var options = {
+        hostname: config.php_server_hostname,
+        port: config.php_server_port,
+        path: config.php_server_path,
+        method: 'POST',
+        headers: headers
+    };
     var proxyReq = http.request(options, function(proxyRes) {
         proxyRes.pipe(res);
     });
