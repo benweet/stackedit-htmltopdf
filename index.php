@@ -23,7 +23,7 @@
                                 2 => array("file", "/dev/null", "w") // stderr is a file to write to
                                 );
         
-        $process = proc_open('/app/bin/fakesu -c /app/www/wkhtmltopdf-lin-amd -L 25 -R 25 -T 25 -B 25 --page-size '.$pageSize.' --header-html /app/www/blank.html --header-spacing 5 --footer-html /app/www/blank.html --footer-spacing 5 --javascript-delay 2000 - -', $descriptorspec, $pipes);
+        $process = proc_open('/app/bin/fakesu -c wkhtmltopdf -L 25 -R 25 -T 25 -B 25 --page-size '.$pageSize.' --header-html /app/www/blank.html --header-spacing 5 --footer-html /app/www/blank.html --footer-spacing 5 --javascript-delay 2000 - -', $descriptorspec, $pipes);
         
         if (is_resource($process)) {
             $input = fopen('php://input', 'r');

@@ -1,2 +1,2 @@
 https://github.com/heroku/heroku-buildpack-php.git
-https://github.com/benweet/stackedit-htmltopdf-heroku-buildpack.git
+https://github.com/benweet/heroku-buildpack-wkhtmltopdf.git
